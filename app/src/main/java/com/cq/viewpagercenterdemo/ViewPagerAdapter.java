@@ -21,6 +21,7 @@ import java.util.List;
 public class ViewPagerAdapter extends PagerAdapter {
     public Context mContext;
     public List<String> mlist = new ArrayList<>();
+    public List<View> viewList = new ArrayList<>();
 
     public ViewPagerAdapter(Context context, List<String> list) {
         mlist.addAll(list);
@@ -39,30 +40,17 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-
-//        final ImageView imageView = new ImageView(mContext);
-//        imageView.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
-//        container.addView(imageView);
-//        imageView.setTag(position);
-//        return imageView;
-
-//        View view = LayoutInflater.from(mContext).inflate(R.layout.item_viewpager, container);
-//        View view = View.inflate(mContext,R.layout.item_viewpager,container);
-//
-//        TextView tvName = view.findViewById(R.id.tvName);
-//        tvName.setText(mlist.get(position));
-//
-//        container.addView(view);
-//
-//        return view;
-
-
         View view = View.inflate(mContext, R.layout.item_viewpager, null);
         container.addView(view);
         TextView textView = view.findViewById(R.id.tvName);
 
         textView.setText(mlist.get(position));
+        viewList.add(view);
         return view;
+    }
+
+    public View getView(int position) {
+        return viewList.get(position);
     }
 
     @Override
