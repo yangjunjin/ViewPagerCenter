@@ -18,22 +18,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public ViewPager viewPager;
     public ViewPagerAdapter adapter = null;
-    public List<String> list = Arrays.asList("我们", "你好", "大家", "手机", "火锅", "沉头");
+    public List<ViewPagerBean> list = new ArrayList<>();
     private int mPosition = 0;
     private boolean first = true;
+    private boolean show = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        for (int i = 0; i < 10; i++) {
+            list.add(new ViewPagerBean("我们"+i,true));
+        }
 
         viewPager = (ViewPager) findViewById(R.id.vp);
         viewPager.setPageMargin(30);//设置间距
@@ -46,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 if (position == 0 && first) {
-                    first = false;    Log.e("position1===", position + "");
+                    first = false;
+                    Log.e("position1===", position + "");
                     View view = adapter.getView(0);
                     animation(view, true);
                 }
@@ -68,6 +76,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageScrollStateChanged(int state) {
 
+            }
+        });
+        adapter.setOnClickListener(new ViewPagerAdapter.OnClickListener() {
+            @Override
+            public void onClick(boolean show) {
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) viewPager.getLayoutParams();
+                if (show) {
+                    params.width = params.width;
+                    params.height = dip2px(300);
+                } else {
+                    params.width = params.width;
+                    params.height = dip2px(200);
+                }
+                viewPager.setLayoutParams(params);
+                viewPager.invalidate();
             }
         });
     }

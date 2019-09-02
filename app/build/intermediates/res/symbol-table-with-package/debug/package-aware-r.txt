@@ -741,6 +741,7 @@ id radio
 id right
 id right_icon
 id right_side
+id root
 id screen
 id scrollIndicatorDown
 id scrollIndicatorUp
@@ -785,6 +786,7 @@ id titleDividerNoCustom
 id title_template
 id top
 id topPanel
+id tvMeddle
 id tvName
 id uniform
 id up
