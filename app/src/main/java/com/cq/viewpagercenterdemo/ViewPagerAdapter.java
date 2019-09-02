@@ -53,7 +53,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         viewList.add(view);
 
 
-        if (mlist.get(0).isShow()) {
+        if (mlist.get(0).isShow()) {    //dfddf
             tvMeddle.setVisibility(View.VISIBLE);
         } else {
             tvMeddle.setVisibility(View.GONE);
